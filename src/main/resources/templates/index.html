@@ -4,7 +4,10 @@
     	<meta charset="utf-8"/>
     	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+		
+		 <!-- include css in the header -->
+	    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"/>
+	    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
    		<link rel="stylesheet" href="/css/jquery-ui-1.9.2.custom.min.css" type="text/css" media="screen" />
 	    <script type="text/javascript" src="/js/jquery-1.8.3.js"></script>
 	    <script type="text/javascript" src="/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -21,7 +24,7 @@
 	              else{
 	                  box = $("#chat_div").chatbox({id:"chat_div", 
 	                                                user:{key : "value"},
-	                                                title : "test chat",
+	                                                title : " ",
 	                                                messageSent : function(id, user, msg) {
 	                                                    $("#log").append(id + " said: " + msg + "<br/>");
 	                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
@@ -32,13 +35,35 @@
 	    </script>
 	</head>
 	<body>
-		<input type="button"
-	    name="toggle" value="toggle" />
-	    <div id="chat_div">
+		<div class="row col-sm-3 form-horizontal" style="margin-left:1px; margin-top:4px; background-color:#cdeafb;">
+			<div class="row" style="text-align:center; margin-bottom:4px;margin-top:4px; font-weight:bold; font-size:130%;">Formulaire pour chater</div>
+			<div class="row form-group">
+				<label class="col-sm-3" for="name" >Nom</label>
+				<div class="col-sm-9">
+		    		<input type="text" id="name" name="name" class="form-control" placeholder="Votre nom..">
+		    	</div>
+		    </div>
+		    <div class=" row form-group">
+		    	<label class="col-sm-3" for="phone">T&eacute;l&eacute;phone</label>
+		    	<div class="col-sm-9">
+		    		<input type="text" id="phone" name="phone" class="form-control" placeholder="Votre num&eacute;ro..">
+		    	</div>
+			</div>
+			<div class=" row form-group">
+				<label class="col-sm-3" for="email">Email</label>
+				<div class="col-sm-9">
+		    		<input type="email" id="email" name="email" class=" col-sm-8 form-control" placeholder="Votre email..">
+				</div>
+			</div>
+			<input type="button" name="toggle" value="toggle" />
+		</div>
+		
+		<div id="chat_div">
 	    </div>
+	    <!--  
 	    <hr />
 	    <div id="log">
-	    </div>
+	    </div> -->
 	
 	</body>
 </html>
