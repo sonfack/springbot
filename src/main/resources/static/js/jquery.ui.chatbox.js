@@ -180,7 +180,7 @@
                     // anything?
                 })
                 .appendTo(uiChatboxContent),
-            uiChatboxInputBox = (self.uiChatboxInputBox = $('<textarea></textarea>'))
+            uiChatboxInputBox = (self.uiChatboxInputBox = $("<textarea id='question' name='question'></textarea>"))
                 .addClass('ui-widget-content ' +
                           'ui-chatbox-input-box ' +
                           'ui-corner-all'
@@ -188,6 +188,7 @@
                 .appendTo(uiChatboxInput)
                 .keydown(function(event) {
                     if (event.keyCode && event.keyCode == $.ui.keyCode.ENTER) {
+                    	//event.preventDefault();
                         msg = $.trim($(this).val());
                         if (msg.length > 0) {
                             self.options.messageSent(self.options.id, self.options.user, msg);

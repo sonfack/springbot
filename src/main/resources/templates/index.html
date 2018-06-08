@@ -18,20 +18,63 @@
 	      $(document).ready(function(){
 	          var box = null;
 	          $("input[type='button']").click(function(event, ui) {
-	              if(box) {
-	                  box.chatbox("option", "boxManager").toggleBox();
-	              }
-	              else{
-	                  box = $("#chat_div").chatbox({id:"chat_div", 
-	                                                user:{key : "value"},
-	                                                title : " ",
-	                                                messageSent : function(id, user, msg) {
-	                                                    $("#log").append(id + " said: " + msg + "<br/>");
-	                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-	                                                }});
-	              }
-	          });
+	        	  name = $('#name').val();
+	        	  email = $('#email').val(); 
+	        	  phone = $('#phone').val(); 
+	        	  if((email == '' && phone == '') ||(name == '') ||((name == '') && (email == '')) || ((name == '') && (email == '')) || ((name == '') && (email == '') && (phone == '')))  {
+	        		  alert("error"); 
+	        	  }else{  
+	        		   fname = name.split(" ");
+	        		  if(fname[0].length > 8){
+	        			  chatname = fname[0].substring(0,8); 
+	        		  }else{
+	        			  chatname = fname[0] ; 
+	        		  }
+		              if(box) {
+		                  box.chatbox("option", "boxManager").toggleBox();
+		              }
+		              else{
+		            	  alert(window.location + "api/bot/question"); 
+		                  box = $("#chat_div").chatbox({id:chatname, 
+		                                                user:{key : "value"},
+		                                                title : " ",
+		                                                messageSent : function(id, user, msg) {
+		                                                  //  $("#log").append(id + " said: " + msg + "<br/>");
+		                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+		                                                   
+		                                                   
+		                                                    $.post("api/bot/question",
+		                                                    {
+	                                                    		question_id:1, 
+	                                                    		question :"serge",
+	                                                    		question_status:1
+	                                                    	},
+                                                    	    function(data, status){
+                                                    	        alert("Data: " + data + "\nStatus: " + status);
+                                                    	        
+                                                    	        id = "Bot"; 
+                                                    	        msg = data; 
+                                                    	        $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+                                                    	      
+                                                    	        
+                                                    	        
+                                                    	        
+                                                    	    }
+	                                                    	
+		                                                    ); 
+		                                                }});
+		              
+		              }
+		              
+		              $('#name').val('');
+		        	  $('#email').val(''); 
+		        	  $('#phone').val(''); 
+	        	  }
+	        	   
+		          });
+	          
 	      });
+	      
 	    </script>
 	</head>
 	<body>
