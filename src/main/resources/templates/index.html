@@ -34,7 +34,7 @@
 		                  box.chatbox("option", "boxManager").toggleBox();
 		              }
 		              else{
-		            	  alert(window.location + "api/bot/question"); 
+		            	 
 		                  box = $("#chat_div").chatbox({id:chatname, 
 		                                                user:{key : "value"},
 		                                                title : " ",
@@ -43,23 +43,21 @@
 		                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
 		                                                   
 		                                                   
-		                                                    $.post("api/bot/question",
-		                                                    {
-	                                                    		question_id:1, 
-	                                                    		question :"serge",
-	                                                    		question_status:1
-	                                                    	},
-                                                    	    function(data, status){
-                                                    	        alert("Data: " + data + "\nStatus: " + status);
-                                                    	        
-                                                    	        id = "Bot"; 
-                                                    	        msg = data; 
-                                                    	        $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-                                                    	      
-                                                    	        
-                                                    	        
-                                                    	        
-                                                    	    }
+		                                                    $.post(
+		                                                    		"api/bot/question",
+				                                                    {	question_id:1, 
+			                                                    		question :msg,
+			                                                    		question_status:1
+			                                                    	},
+		                                                    	    function(data, status){
+		                                                    	        alert("Data: " + data + "\nStatus: " + status);
+		                                                    	        
+		                                                    	        id = "Bot"; 
+		                                                    	        msg = data; 
+		                                                    	        $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+		                                      
+		                                                    	    }
+		                                                  
 	                                                    	
 		                                                    ); 
 		                                                }});
