@@ -42,16 +42,20 @@
 		                                                  //  $("#log").append(id + " said: " + msg + "<br/>");
 		                                                    $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
 		                                                   
-		                                                   
+		                                                   quest = {
+		                                                		   "question_id":1,
+		                                                		   "question":msg,
+		                                                		   "question_status":1	                                                    
+		                                                		   } 
+		                                                   question = quest; 
+		                                                	   //JSON.stringify(quest);
+		                                                    console.log(question); 
 		                                                    $.post(
 		                                                    		"api/bot/question",
-				                                                    {	question_id:1, 
-			                                                    		question :msg,
-			                                                    		question_status:1
-			                                                    	},
+				                                                    question,
 		                                                    	    function(data, status){
-		                                                    	        alert("Data: " + data + "\nStatus: " + status);
-		                                                    	        
+		                                                    	      //  alert("Data: " + data + "\nStatus: " + status);
+		                                                    	        console.log(data); 
 		                                                    	        id = "Bot"; 
 		                                                    	        msg = data; 
 		                                                    	        $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
